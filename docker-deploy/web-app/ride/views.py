@@ -30,7 +30,8 @@ def register_request(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, "Registration successful.")
+            messages.success(
+                request, "Registration successful.")
             return HttpResponseRedirect(reverse('home'))
         messages.error(
             request, "Unsuccessful registration. Invalid information.")
@@ -102,7 +103,7 @@ class RequestRide(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        messages.error(self.request, self.error_message)
+        messages.warning(self.request, self.error_message)
         return super().form_invalid(form)
 
 

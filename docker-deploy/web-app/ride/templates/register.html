@@ -2,7 +2,13 @@
 
 {% block content %}
 <h1>Register:</h1>
-
+{% if messages %}
+{% for message in messages %}
+{% if message.level == 40 %}
+<p style="color: red; font-size: large; font-weight: bold; font-style: italic;">Sorry! {{message}} Please try again!</p>
+{%endif%}
+{% endfor %}
+{% endif %}
 <form method="post" action="{% url 'register' %}">
     {% csrf_token %}
     <table>

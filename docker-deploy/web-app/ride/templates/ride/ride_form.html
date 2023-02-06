@@ -2,9 +2,11 @@
 
 {% block content %}
 <h1>Ride Information:</h1>
-{% if messages %}
+{%if messages%}
 {% for message in messages %}
+{% if message.level == 30%}
 <p style="color: red; font-size: large; font-weight: bold; font-style: italic;">Sorry! {{message}} Please try again!</p>
+{%endif%}
 {% endfor %}
 {% endif %}
 <form action="" method="post">
