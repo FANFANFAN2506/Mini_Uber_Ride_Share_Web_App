@@ -1,0 +1,53 @@
+body {
+    background: url("/static/background.png") no-repeat fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-position: right 80% bottom 50%;
+    /* background-image: url("/static/background.png"); */
+    /* background-size: 100% 100%; */
+}
+
+.sidebar-nav>li>p {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.sidebar-nav>li>a {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+p {
+    font-size: 2.5vh;
+}
+
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: blue;
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    color: rgb(11, 124, 236);
+    font-size: 70px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-style: italic;
+    font-style: bold;
+    font-size: 40px;
+}
+
+h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+    font-style: italic;
+}

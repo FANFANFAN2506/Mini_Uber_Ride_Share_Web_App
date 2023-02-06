@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Driver info</h1>
+{% if driver_info %}
+<div style="margin-left:20px;margin-top:20px">
+
+    <p><strong>Drivers name:</strong> {{ driver_info.user }}</p>
+    <p><strong>Vehcicle plate:</strong> {{ driver_info.liscense_plate }}</p>
+    <p><strong>Vehicle type:</strong> {{ driver_info.vehicle_type}}</p>
+    <p><strong>Maximum passenger number:</strong> {{ driver_info.max_num_passengers }}</p>
+    <p><strong>Special Request accept:</strong> {{ driver_info.special_request}}</p>
+</div>
+<a href="{% url 'driver-update' driver_info.id %}">Update Your Info HERE!</a>
+{% else %}
+<p>You are not a driver.</p>
+{% endif %}
+{% endblock %}

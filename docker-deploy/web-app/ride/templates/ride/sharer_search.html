@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Available shared Ride:</h1>
+{% if valid_ride %}
+<ul>
+    <form action="{% url 'sharer-join' pass_num%}" method="post">
+        {% csrf_token %}
+        <label for="ride_select">
+            <h3>Select the ride you wanna join:</h3>
+        </label> <br>
+        {%for ride in valid_ride%}
+        <input type="radio" name="ride_id_select" id="ride_select" value="{{ride.ride_id}}">
+        User: <b>{{ride.owner}}</b> with a party of <b>{{ride.passenger_num}}</b> To
+        <b>{{ride.destination_addr}}</b>
+        At
+        <b>{{ride.arrival_date}}</b>
+        <br>
+        {%endfor%}
+        <br>
+        <input type="submit" value="Submit" />
+    </form>
+
+</ul>
+{%else%}
+<p><strong>Sorry! No available ride!</strong></p>
+{%endif%}
+
+{% endblock %}

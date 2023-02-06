@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Available Open Rides:</h1>
+{% if valid_ride %}
+<ul>
+    {%for ride in valid_ride%}
+    <li>
+        <a href="{%url 'driver-confirm' ride.ride_id%}">
+            User: <b>{{ride.owner}}</b> with a party of <b>{{ride.passenger_num}}</b> To
+            <b>{{ride.destination_addr}}</b>
+            At
+            <b>{{ride.arrival_date}}</b>
+        </a>
+        <p style="font-size: small; color: grey;">{%if ride.special_request%}Customer's sepcial request:
+            {{ride.special_request}}{%endif%}</p>
+    </li>
+    {%endfor%}
+</ul>
+{%else%}
+<p><strong>Sorry! No available ride!</strong></p>
+{%endif%}
+
+{% endblock %}

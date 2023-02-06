@@ -1,0 +1,34 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Driver Order List</h1>
+{% if ride_drive %}
+<ul>
+    <h2>Your Ride as driver!</h2>
+    {%if confirmed_drive %}
+    <h3>Confirmed Ride</h3>
+    {% for ride in confirmed_drive %}
+    <li><a href="{{ride.get_absolute_url}}">Ride with {{ride.owner}} to {{ride.destination_addr}} at
+            {{ride.arrival_date}}</a></li>
+    {%endfor%}
+    {%endif%}
+    {% if complete_drive %}
+    <br>
+    <h3>Completed Ride</h3>
+    <div style="color: darkgrey;">(You are not allowed to view detail of completed ride)</div>
+    {% for ride in complete_drive %}
+    <li>
+        <p style="font-weight: bold;
+        color: grey;">Ride with <b>{{ride.owner}}</b> to <ins>{{ride.destination_addr}}</ins> at
+            {{ride.arrival_date}}
+        </p>
+    </li>
+    {% endfor %}
+    {% endif %}
+</ul>
+{% else %}
+<p>No order history for you.</p>
+{% endif %}
+
+
+{% endblock %}

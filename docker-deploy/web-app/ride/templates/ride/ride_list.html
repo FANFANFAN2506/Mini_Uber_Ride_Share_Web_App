@@ -1,0 +1,99 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Ride List</h1>
+<div>
+    <h2>Your Ride as Owner</h2>
+    <p> {% if drive_info %}
+        <a href="{% url 'driver-list' drive_info.id %}">You can view your rides ORDER as a Driver HERE!</a>
+        {% endif %}
+    </p>
+    {% if own_ride %}
+    <ul>
+        <h3>Open ride</h3>
+        {% if open_ride %}
+        {% for ride in open_ride %}
+        <li>
+            <a href="{{ ride.get_absolute_url }}">{{ ride.arrival_date }} To {{ride.destination_addr}}</a>
+        </li>
+        {% endfor %}
+        {%else%}
+        <p>You don't have a open ride for now.</p>
+        {% endif %}
+        <h3>Confirmed ride</h3>
+        {% if confirmed_ride %}
+        {% for ride in confirmed_ride %}
+        <li>
+            <a href="{{ ride.get_absolute_url }}">{{ ride.arrival_date }} To {{ride.destination_addr}}</a>
+        </li>
+        {% endfor %}
+        {%else%}
+        <p>You don't have a confirmed ride for now. </p>
+        {% endif %}
+        <h3>Completed ride</h3>
+        {% if complete_ride %}
+        <div style="color: darkgrey;">(You are not allowed to view detail of completed ride)</div>
+        {% for ride in complete_ride %}
+        <li>
+            <p style="    font-weight: bold;
+            color: grey;">Ride to <b>{{ride.destination_addr}}</b> with <ins>{{ride.driver.user}}</ins> Finished at
+                {{ride.arrival_date}}
+            </p>
+        </li>
+        {% endfor %}
+        {%else%}
+        <p>You don't have a completed ride for now.</p>
+        {% endif %}
+        {% else %}
+        <p>There is no current ride as a owner.</2>
+    </ul>
+    {% endif %}
+</div>
+
+<div>
+    <h2>Your ride as a Sharer!</h2>
+    {%if shared_ride %}
+    <ul>
+        <h3>Open Ride:</h3>
+        {%for sharer in shared_ride%}
+        {%if sharer.ride_joined.is_open%}
+        <li> <a href="{{ sharer.ride_joined.get_absolute_url }}">{{ sharer.ride_joined.arrival_date }} To
+                {{sharer.ride_joined.destination_addr}}</a>
+            <a style="font-size: small; color: lightblue;"
+                href="{% url 'sharer-delete' sharer.ride_joined.ride_id %}">(Leave the
+                Ride)</a>
+        </li>
+        {%endif%}
+        {%endfor%}
+    </ul>
+    <ul>
+        <h3>Confirmed Ride:</h3>
+        {%for sharer in shared_ride%}
+        {%if sharer.ride_joined.is_confirmed%}
+        <li> <a href="{{ sharer.ride_joined.get_absolute_url }}">{{ sharer.ride_joined.arrival_date }} To
+                {{sharer.ride_joined.destination_addr}}</a>
+        </li>
+        {%endif%}
+        {%endfor%}
+    </ul>
+    <ul>
+        <h3>Completed Ride:</h3>
+        {%for sharer in shared_ride%}
+        {%if sharer.ride_joined.is_complete%}
+        <li>
+            <p style="    font-weight: bold;
+                color: grey;">Ride to <b>{{sharer.ride_joined.destination_addr}}</b> with
+                <ins>{{harer.ride_joined.driver.user}}</ins> Finished at
+                {{harer.ride_joined.arrival_date}}
+            </p>
+        </li>
+        {%endif%}
+        {%endfor%}
+
+    </ul>
+    {%else%}
+    <p>You don't have a ride as sharer</p>
+    {%endif%}
+</div>
+
+{% endblock %}

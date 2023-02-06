@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{{ride_instance.passenger_num}}
+<h1>Share ride join confirmation:</h1>
+<h3>Congrats! you joined the Ride:</h3>
+<div>
+    <p style="font-size: larger;">With <b>{{ride_instance.owner}}</b> to <ins>{{ride_instance.destination_addr}}</ins>
+        at
+        {{ride_instance.arrival_date}}
+    </p>
+</div>
+<a href="{%url 'rides'%}">View all your Rides HERE!</a>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Drive for the community!</h1>
+{% if drive %}
+<h2>You have already registered as a driver! THANK YOU!</h2>
+<a style="font-size:large; font-weight: light;" href="{{ drive.get_absolute_url }}">View and Modify Driver
+    information HERE!</a>
+<br>
+<a style="font-size:large; font-weight: light;" href="{% url 'driver-search' drive.id%}">Find Order HERE!</a>
+<br>
+<a style="font-size:large; font-weight: light;" href="{% url 'driver-list' drive.id %}">View Your Order HERE!</a>
+
+{% else %}
+<h2>You haven't been registered as a driver!</h2>
+<a href="{% url 'driver-create' %}">Become a Driver Today!</p>
+</a>
+{% endif %}
+{% endblock %}

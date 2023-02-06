@@ -1,0 +1,64 @@
+{% extends "base_generic.html" %}
+
+{% block title %}Ride detail{% endblock %}
+
+{% block content %}
+<h1>Ride detail</h1>
+
+<div style="margin-left:20px;margin-top:20px">
+    <p style="font-weight: bold; font-size: large; color: blue;">This is a {{ ride.status }} RIDE: &nbsp &nbsp &nbsp
+        &nbsp &nbsp {% if is_driver %}<a
+            style="font-weight: normal; color: rgb(205, 120, 23); border-style: dashed; border-width: 1%;"
+            href="{%url 'driver-complete' ride.ride_id%}">Marked as
+            complete!</a>{% endif %}</p>
+    <p><strong>Ride ID:</strong> {{ ride.ride_id }}</p>
+    <p><strong>Destination:</strong> {{ ride.destination_addr }}</p>
+    <p><strong>Arrival Time:</strong> {{ ride.arrival_date}}</p>
+    {%if owner_num %}
+    <p><strong>Owner Party's number:</strong> {{ owner_num }}</p>
+    {%else%}
+    <p><strong>Owner Party's number:</strong> {{ ride.passenger_num }}</p>
+    {%endif%}
+    <p><strong>Selected vehcicle type:</strong> {%if ride.vehicle_type %}
+        {{ ride.vehicle_type }}
+        {% else %} Not specified
+        {%endif%}</p>
+    <p><strong>Special Request:</strong>
+        {% if ride.special_request %}{{ ride.special_request }}
+        {% else %}
+        None
+        {% endif %}
+    </p>
+    {% if sharer_instance %}
+    <br>
+    <p style="font-weight: bold; font-size: large; color: blue;">Joined Sharer Informations:</p>
+    <ul>
+        {% for sharer in sharer_instance %}
+        <li>
+            <p><strong>Sharer:</strong> {{sharer.user}}</p>
+            <p><strong>Sharer's party num:</strong> {{sharer.passenger_num}}</p>
+        </li>
+        {%endfor%}
+    </ul>
+    {% endif %}
+    {% if ride.is_confirmed %}
+    <br>
+    <p style="font-weight: bold; font-size: large; color: blue;">Driver Informations:</p>
+    <p><strong>Drivers name:</strong> {{ ride.driver.user }}</p>
+    <p><strong>vehcicle plate:</strong> {{ ride.driver.liscense_plate }}</p>
+    {% endif %}
+    {% if is_owner and ride.is_open %}
+    {% if sharer_instance %}
+    <p style="color: grey; font-style: italic; font-size: large;">Sorry, There is sharer joined in the Ride, you are not
+        allowed to modify or delete the order!</p>
+    {% else%}
+    <a href="{% url 'ride-update' ride.ride_id %}">Edit Your Ride Here!</a>
+    <br>
+    <a style="font-weight: bolder; color: rgb(205, 23, 23); border-style: dashed; border-width: 1%;"
+        href="{% url 'ride-delete' ride.ride_id %}">Delete Your Ride.</a>
+    {%endif%}
+    {%endif%}
+</div>
+<br>
+<a href="{% url 'rides'%}">Back to the ride list.</a>
+{% endblock %}

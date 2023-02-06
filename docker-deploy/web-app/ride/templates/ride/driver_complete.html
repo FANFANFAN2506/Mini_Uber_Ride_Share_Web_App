@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div>
+    <h2>Selected Ride:</h2>
+    <h3 style="color: rgb(50, 136, 42);">Is this the Order you want to MARK as COMPLETE</h3>
+    <p><strong>Ride ID:</strong> {{ ride_instance.ride_id }}</p>
+    <p><strong>Owner:</strong> {{ride_instance.owner.get_username}}</p>
+    <p><strong>Destination:</strong> {{ ride_instance.destination_addr }}</p>
+    <p><strong>Arrival Time:</strong> {{ ride_instance.arrival_date}}</p>
+    <p><strong>Owner party's number:</strong> {{ ride_instance.passenger_num }}</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+
+<a href="{{ ride_instance.get_absolute_url }}">Back to the Order List</a>
+{% endblock %}

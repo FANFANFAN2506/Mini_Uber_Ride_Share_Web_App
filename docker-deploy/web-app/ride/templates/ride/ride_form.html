@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Ride Information:</h1>
+{% if messages %}
+{% for message in messages %}
+<p style="color: red; font-size: large; font-weight: bold; font-style: italic;">Sorry! {{message}} Please try again!</p>
+{% endfor %}
+{% endif %}
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}

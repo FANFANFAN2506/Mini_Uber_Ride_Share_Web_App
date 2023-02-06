@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% block title%}
+Let's Ride!
+{% endblock %}
+{% block content %}
+<h1>Welcome {{user.get_username}}</h1>
+<div>
+    <h3>Thanks for using our app to get a ride!</h3>
+    <p>You can do the following things with this app:</p>
+    <ul>
+        <li><strong><a href="{% url 'request-ride' %}">Request a ride</a></strong></li>
+        <li><strong><a href="{% url 'sharer-search' %}">Finding a ride as a Sharer</a></strong></li>
+        <li><strong><a href="{% url 'driver' %}">Become a driver</a></strong></li>
+    </ul>
+
+</div>
+
+{% endblock %}
