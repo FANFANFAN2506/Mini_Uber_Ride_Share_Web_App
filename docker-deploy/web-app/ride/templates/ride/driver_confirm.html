@@ -8,7 +8,7 @@
     <p><strong>Owner:</strong> {{ride_instance.owner.get_username}}</p>
     <p><strong>Destination:</strong> {{ ride_instance.destination_addr }}</p>
     <p><strong>Arrival Time:</strong> {{ ride_instance.arrival_date}}</p>
-    <p><strong>Owner party's number:</strong> {{ ride_instance.passenger_num }}</p>
+    <p><strong>Passenger number:</strong> {{ ride_instance.passenger_num }}</p>
     <form action="" method="post">
         {% csrf_token %}
         <table>
