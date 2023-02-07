@@ -101,8 +101,8 @@ class Ride(models.Model):
         return bool(self.status == 'open')
 
     @property
-    def is_confrimed(self):
-        return bool(self.status == 'confrimed')
+    def is_confirmed(self):
+        return bool(self.status == 'confirmed')
 
     @property
     def is_complete(self):
